@@ -1,0 +1,75 @@
+body {
+    margin-top: 1em;
+    margin-bottom: auto;
+    font-family: arial, sans-serif;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2.5em;
+}
+
+p, div {
+    margin: 10px;
+    padding: 20px;
+    line-height: 1.5em;
+}
+/* Table Formatting */
+table {
+    margin: auto;
+    border: 5px solid #3f2a14;
+    width: 100%;
+    border-spacing: 0;
+}
+
+td, th{
+    border-style: none;
+    padding: 0.5em;
+    width: auto;
+}
+
+tfoot td {
+    font-size: 9px;
+    font-style: italic;
+    text-align: center;
+}
+tr:nth-of-type(even){
+    background-color: #eaeaea;
+}
+
+thead:first-of-type {
+    background-color: #3f2a14;
+    color: #FFF;
+}
+/* caption tag */
+caption {
+    font-family: Impact "Franklin Gothic Bold", "Arial Black", "sans-serif";
+    font-weight: bold;
+    font-size: 1.75em;
+    padding-bottom: 0.5em;
+}
+/*responsive image class*/
+responsive {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #51471a;
+}
+td.price {
+    white-space: nowrap;
+}
+
+td.specialty {
+    white-space: nowrap;
+}
+/*ID*/
+validation {
+    text-align: center;
+}
+/*media query that hides the image when the screen size is @
+550 pixels or lower*/
+@media only all and (max-width: 550px){
+
+    img {
+        display: none;
+    }
+}

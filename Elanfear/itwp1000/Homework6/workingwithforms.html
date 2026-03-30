@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Music Survey</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/CSS" href="styles.css">
+   
+</head>
+    
+<body>
+    <header>
+        <h1>Music Survey</h1>
+    </header>
+    
+    <main>
+      <form id="survey" name="survey" method="post" action="https://webdevbasics.net/scripts/demo.php" enctype="application/x-www-form-urlencoded">
+      <!-- Step 1 -->
+      <section>
+        <h2>Please complete the following information about yourself below</h2>
+        <fieldset>
+          <legend><strong>Step 1: Your information</strong></legend>
+          <label>Name: <input type="text" name="name" id="name" size="30" required placeholder="Full Name" autofocus><br></label>
+          <label>Email: <input type="email" name="email" id="email" size="30" required placeholder="Email Address"><br></label>
+          <label>Phone Number: <input type="tel" name="phone" id="phone" size="30" required placeholder="Phone Number"><br></label>
+          Please select your gender
+          <label>Male&nbsp;<input type="radio" name="gender" value="male"></label>
+          <label>Female&nbsp;<input type="radio" name="gender" value="female"></label>
+          <label>Prefer not to answer&nbsp;<input type="radio" name="gender" value="no_answer"><br></label>
+          <label>Age: <input type="range" min="5" max="100" value="5" name="age" id="myRange"></label>
+        <span id="demo"></span> Years old
+        </fieldset>
+      </section>
+      <!-- Step 2 -->
+      <section>
+        <h2>Let us know about your favorite genre(s)</h2>
+      
+      <fieldset>
+        <legend><strong>Step 2: Favorite Genre(s)</strong></legend>
+        <label>Pop <input  name="Pop" id="pop" type="checkbox" value="Yes"></label>
+        <label>Rock <input  name="Rock" id="Rock" type="checkbox" value="Yes"></label>
+        <label>Rap <input  name="Rap" id="Rap" type="checkbox" value="Yes"></label>
+        <label>Classical <input  name="Classical" id="Classical" type="checkbox" value="Yes"></label>
+        <label>Folk <input  name="Folk" id="Folk" type="checkbox" value="Yes"></label>
+        <label>Country <input  name="Country" id="Country" type="checkbox" value="Yes"></label>
+        <label>other <input  name="other" id="other" type="checkbox" value="Yes"></label>
+        </fieldset>
+      </section>
+      
+      <!-- Step 3 -->
+      <section>
+        <h2>How do you purchase your music?</h2>
+        <fieldset>
+          <legend><strong>Step 3: Purchase Options</strong></legend>
+          <label>I mainly purchase music through
+          <select name="purchase_options" id="purchase_options">
+            <option selected="selected" disabled>Please select one...</option>
+            <option value="itunes">iTunes</option>
+            <option value="p2p">Peer2Peer Sites</option>
+            <option value="paid_sites">Paid Subscription Sites</option>
+            <option value="other">Other</option>
+          </select>
+          </label>
+        </fieldset>
+      </section>
+      <!-- Step 4 -->
+      <section>
+        <h2>Please share your thoughts with us.</h2>
+        <fieldset>
+          <legend><strong>Step 4: Please shere your thoughts with us.</strong></legend>
+          How has music influnced your life?
+          <div class="comment">
+            <label><textarea name="Comments" id="UserComments" class="textinput"
+              onfocus="javascript:this.value='';">Place your comments here</textarea></label>
+          </div>
+        </fieldset>
+      </section>
+      <!-- Step 5 -->
+      <section>
+        <h2>Submit or Reset the form below.</h2>
+        <fieldset>
+          <legend><strong>Step 5: Send it!</strong></legend>
+          <input id="submit" type="submit" value="complete Survey">&nbsp;
+          <input id="reset" type="reset" value="reset">
+        </fieldset>
+      </section>
+      </form>
+    </main>
+    
+    <footer>
+    <!-- Hyperlink both the HTML5 Validation and Course Homepage text to link to their respective sites --> 
+        <p id="validation">  
+          <a href="https://validator.w3.org/nu/?doc=https%3A%2F%2Flanfeare538.macombserver.net%2Fitwp1000%2Fnuresryrhyme.html">HTML5 Validation</a> | <a href="../home.html">Back to Homepage</a>  
+        </p>
+        
+    </footer>
+
+<!-- JavaScript script for age slider display adapted from W3schools.com -->
+    <script>
+        var slider = document.getElementById("myRange");
+        var output = document.getElementById("demo");
+        output.innerHTML = slider.value;
+
+        slider.oninput = function() {
+          output.innerHTML = this.value;
+        }
+    </script>
+    
+       
+</body>
+</html>
