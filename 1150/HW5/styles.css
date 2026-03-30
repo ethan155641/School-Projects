@@ -1,0 +1,47 @@
+/*  Styles for Homework 5
+    Author: Add your name here
+*/
+
+/* heading styles */
+
+h1, h4 {
+  text-align: center;
+}
+
+
+/* button style */
+
+button {
+  margin: 15px;
+  background-color: #336699;
+  color: #ffffff;
+  border-radius: 5px;
+}
+
+/* main container for React code */
+#container {
+  padding: 50px;
+  margin: 0 75px 0 75px;
+  background-color: #fa8072; /* salmon */
+  display: flex;
+  justify-content: center;
+  border-radius: 15px;
+  min-width: 250px;
+}
+
+/* descriptive paragraph */
+#description_info {
+  padding: 75px;
+  margin: 50px;
+  justify-content: center;
+}
+
+/* ID that centers the validation text */
+#validation {
+  text-align: center;
+}
+
+/* add a margin around the entire footer */
+footer {
+  margin: 50px;
+}

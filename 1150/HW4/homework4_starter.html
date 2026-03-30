@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Working with State</title>
+        <link rel="stylesheet" href="hw4_styles.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    </head>
+
+    <body>
+        <main>
+            <h1>Newborn Births in the USA</h1>
+            <img src="baby_stork.png" alt="Stork delivering a baby - Image" title="Stork delivering a baby - Image" class="center">
+            <div id="container"></div>
+            
+        <script type="text/babel">
+        class BirthCounter extends React.Component {
+          constructor(props) {
+            super(props);
+            this.state = {
+              birth: 0
+            };
+            this.timerTick = this.timerTick.bind(this);
+          }
+
+          timerTick() {
+            this.setState({
+              birth: this.state.birth + 1
+            });
+          }
+
+          componentDidMount() {
+            setInterval(this.timerTick, 8000);
+          }
+
+          render() {
+            var textStyle = {
+              fontSize: 72,
+              fontFamily: "sans-serif",
+              color: "#66FFFF",
+              fontWeight: "bold"
+            };
+
+            return (
+              <h1 style={textStyle}>{this.state.birth}</h1>
+            );
+          }
+        }
+
+        class BirthCounterDisplay extends React.Component {
+          render() {
+            var commonStyle = {
+              margin: 0,
+              padding: 0
+            };
+
+            var divStyle = {
+              width: 250,
+              textAlign: "center",
+              backgroundColor: "black",
+              padding: 40,
+              fontFamily: "sans-serif",
+              color: "#999",
+              borderRadius: 10
+            };
+
+            var textStyles = {
+              emphasis: {
+                fontSize: 38,
+                ...commonStyle
+              },
+              smallEmphasis: {
+                ...commonStyle
+              },
+              small: {
+                fontSize: 17,
+                opacity: 0.5,
+                ...commonStyle
+              }
+            };
+
+            return (
+              <div style={divStyle}>
+                <BirthCounter/>
+                <h2 style={textStyles.smallEmphasis}>NEW BIRTHS</h2>
+                <h2 style={textStyles.small}>(since you loaded this page)</h2>
+              </div>
+            );
+          }
+        }
+
+        class LikeButton extends React.Component {
+          constructor(props) {
+            super(props);
+            this.state = {
+              count: 0
+            };
+            this.incrementMe = this.incrementMe.bind(this);
+          }
+
+          incrementMe = () => {
+            let newCount = this.state.count + 1;
+            this.setState({
+              count: newCount
+            });
+          }
+
+          render() {
+            return (
+              <button onClick={this.incrementMe}>
+                <span className="fa fa-heart fa_custom"></span> Likes: {this.state.count}
+              </button>
+            );
+          }
+        }
+
+        ReactDOM.render(
+          <BirthCounterDisplay/>,
+          document.querySelector("#container")
+        );
+
+        ReactDOM.render(
+          <LikeButton/>,
+          document.querySelector("#like")
+        );
+        </script>
+        
+        <div id="source_info">
+   			 <p>According to the <b>United Nations World Population Prospects</b> report, a baby is born in the United States approximately <b>every 8 seconds</b>.</p>
+   			 <p>Look above to see how many babies have been born in the <b>United States</b> since you loaded this page. </p>
+   			 <p><b>Source:</b> <a href="https://bit.ly/3owdbc4" target="_blank" title="How many babies are born each second in the US? | IndexMundi Blog">https://bit.ly/3owdbc4</a></p>
+		</div>
+		
+		<div id="like"></div>
+
+        </main>
+
+        <footer>
+                <p id="validation">  
+                    <a href="https://validator.w3.org/nu/?doc=https%3A%2F%2Flanfeare538.macombserver.net%2Fitwp1150%2FHW4%2Fhomework4_starter.html" title="HTML5 Validation - W3C">HTML5 Validation</a> | 
+                    <a href="https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Flanfeare538.macombserver.net%2Fitwp1150%2FHW4%2Fhomework4_starter.html&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en" title="CSS Validation - W3C">CSS Validation</a> | 
+                    <a href="../home.htm">Course Homepage</a>
+                </p> 
+        </footer>
+    
+    </body>
+</html>

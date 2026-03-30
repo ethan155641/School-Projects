@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+<meta charset="utf-8">
+<title>JavaScript Refresher</title>
+<link rel="stylesheet" href="form.css">
+
+
+</head>
+<body>
+    <main>  
+        <h1>JavaScript Calculations</h1>
+        <p>Calculate the result of two numbers based on user input using multiplication and addition.</p>
+            <form id="form">
+                <div class="form-field">
+                    <label for="first-number">Number 1:</label>
+                        <input type="text" id="first-number" value="" autofocus>
+                </div>
+
+                <div class="form-field">
+                    <label for="second-number">Number 2:</label>    
+                        <input type="text" id="second-number" value="">
+                </div>
+
+                <div class="form-field">
+                    <label for="num1"></label>
+                        <input type="button" onclick="multiplyBy()" value="Multiply" id="num1">
+                </div>
+
+                <div class="form-field">
+                    <label for="num2"></label>
+                        <input type="button" onclick="addTogether()" value="Add" id="num2">
+                </div>
+                <div class="form-field">
+                    <label for="num2"></label>
+                        <input type="reset" value="Clear Form">
+                </div>
+            </form>
+        <p><b>The Result is:</b></p>
+        <p class="output">
+            <span id="result"></span>
+        </p>
+    </main>
+    
+    <footer>
+            <p id="validation">  
+                <a href="https://validator.w3.org/nu/?doc=https%3A%2F%2Flanfeare538.macombserver.net%2Fitwp1150%2FHW1%2Fhw1_assignment.html" title="HTML5 Validation">HTML5 Validation</a> | 
+                <a href="https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Flanfeare538.macombserver.net%2Fitwp1150%2FHW1%2Fhw1_assignment.html&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en" title="CSS Validation">CSS Validation</a> | 
+                <a href="../home.htm" title="Course Homepage">Course Homepage</a>
+            </p> 
+    </footer>
+<script src="script.js"></script>
+
+</body>
+</html>

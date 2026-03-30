@@ -1,0 +1,60 @@
+/*  Styles for Homework 4 */
+
+
+/* centers the heading 1 tag */
+h1 {
+  text-align: center;
+}
+
+/* ID for the section where the counter resides */
+#container {
+  padding: 25px;
+  background-color: #fff;
+  display:flex; 
+  flex-direction:row;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ID for the source information section */
+#source_info {
+  width: 600px;
+  padding: 15px;
+  margin: 0 auto;
+  background-color: #5e5e5e;
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+/* ID that styles the Like button */
+#like {
+  text-align: center;
+  padding: 25px;
+}
+
+
+
+/* class that centers the stork image */
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width:45%;
+}
+
+/* class that changes the color of the heart icon to red */
+.fa_custom {
+  color:  #db0808;
+}
+
+/* ID that centers the validation text */
+#validation {
+  text-align: center;
+}
+
+/* adds a margin around the entire footer */
+footer {
+  margin: 50px;
+}

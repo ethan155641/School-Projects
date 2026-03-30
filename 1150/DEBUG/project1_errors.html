@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Favorite Movies</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- React libraries -->
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+
+  <!-- Babel compiler -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <header class="site-banner">
+    <h1>My Favorite Movies</h1>
+    <p>Welcome to my web page!</p>
+  </header>
+
+  <main>
+    <div id="root"></div>
+  </main>
+
+  <footer class="page-footer">
+    <p>Movies can entertain, inspire, and leave a lasting impression long after the credits roll.</p>
+    <p>
+      <a href="https://validator.w3.org/nu/?doc=https%3A%2F%2Flanfeare538.macombserver.net%2Fitwp1150%2FDEBUG%2Fproject1_errors.html">HTML5 Validation</a> |
+      <a href="https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Flanfeare538.macombserver.net%2Fitwp1150%2FDEBUG%2Fproject1_errors.html&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en">CSS Validation</a>
+    </p>
+  </footer>
+
+  <script type="text/babel">
+    class Header extends React.Component {
+      render() {
+        const headingStyle = {
+          color: "#111827",
+          fontSize: "2rem",
+          marginBottom: "10px"
+        };
+
+        const paragraphStyle = {
+          fontSize: "1rem",
+          lineHeight: "1.6",
+          color: "#374151"
+        };
+
+        return (
+          <section className="intro-box">
+            {/*  (Error 5): 'this.props.heading' was wrong App passes 'title' */}
+            <h2 style={headingStyle}>{this.props.title}</h2>
+            <p style={paragraphStyle}>{this.props.text}</p>
+            {/* (Error 10): <div> was wrong */}
+            <p style={paragraphStyle}>{this.props.extraText}</p>
+          </section>
+        );
+      }
+    }
+
+    class MovieCard extends React.Component {
+      render() {
+        const cardTitleStyle = {
+          color: "#0f172a",
+          fontSize: "1.4rem",
+          marginBottom: "10px",
+          textAlign: "center"
+        };
+
+        const movieTextStyle = {
+          fontSize: "0.95rem",
+          lineHeight: "1.5",
+          color: "#374151"
+        };
+
+        const imageStyle = {
+          border: "3px solid #dbe4ee"
+        };
+
+        return (
+          <article className="movie-card">  {/*(Error 6): 'movie-box' doesn't exist in CSS, */}
+            {/* (Error 1): 'scr' was a typo*/}
+            {/* (Error 9): imageStyle was defined but never applied*/}
+            <img
+              src={this.props.image}
+              alt={this.props.title}
+              style={imageStyle}
+              className="movie-image"
+            />
+            <h3 style={cardTitleStyle}>{this.props.title}</h3>
+            {/*(Error 2): 'this.props.year' was wrong */}
+            <p style={movieTextStyle}><strong>Genre:</strong> {this.props.genre}</p>
+            <p style={movieTextStyle}><strong>Why I like it:</strong> {this.props.description}</p>
+          </article>
+        );
+      }
+    }
+
+    class App extends React.Component {
+      render() {
+        const movies = [
+          {
+            id: 1,
+            title: "The Dark Knight",
+            genre: "Action / Crime / Drama",
+            image: "images/batman.jpg",  // (Error 7): 'batmann.jpg' had typo
+            description: "I like The Dark Knight because it has a dark atmosphere, strong action scenes, and an unforgettable performance by the Joker. The story feels intense from beginning to end and keeps me interested every time I watch it."
+          },
+          {
+            id: 2,
+            title: "Spider-Man",
+            genre: "Action / Adventure / Superhero",
+            image: "images/spiderman.jpeg",  //(Error 8): wrong file extension 
+            description: "Spider-Man is one of my favorites because it has a good balance of action, humor, and emotion. I also enjoy how the character is relatable and always tries to do the right thing even when life gets difficult."
+          },
+          {
+            id: 3,
+            title: "The Matrix",
+            genre: "Science Fiction / Action",
+            image: "images/matrix.jpg",
+            description: "I like The Matrix because of its creative concept, memorable action scenes, and unique visual style. The movie makes you think while still being exciting and entertaining to watch."
+          }
+        ];
+
+        const sectionStyle = {
+          padding: "10px"
+        };
+
+        return (
+          <div className="page-container" style={sectionStyle}>
+            {/*(Error 4): 'MovieHeader' is not defined*/}
+            <Header
+              title="Top 3 Favorite Movies"
+              text="This React application shows three of my favorite movies and why I enjoy them."
+              extraText="Movies have always been one of my favorite forms of entertainment because they can tell powerful stories and create memorable experiences. This page highlights three movies that I personally enjoy watching the most. Each one stands out to me for different reasons, such as its story, characters, visuals, or overall message. Together, these movies show the variety of styles and themes that make film so interesting."
+            />
+
+            <section className="movie-grid">
+              {movies.map((movie) => (
+                <MovieCard
+                  key={movie.id}
+                  {...movie}
+                />
+              ))}
+            </section>
+          </div>
+        );
+      }
+    }
+
+    ReactDOM.render(<App />, document.getElementById("root"));  // (Error 3): 'main' 
+  </script>
+</body>
+</html>

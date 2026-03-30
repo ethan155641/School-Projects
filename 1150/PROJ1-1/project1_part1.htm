@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Project 1 - Part 1</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- React and Babel (development builds) -->
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div id="root"></div>
+  </div>
+
+  <footer class="footer">
+    <p>
+      Validate: <a href="https://validator.w3.org/nu/?doc=https%3A%2F%2Flanfeare538.macombserver.net%2Fitwp1150%2FPROJ1-1%2Fproject1_part1.htm" target="_blank" rel="noopener">HTML5 Validator</a> |
+      <a href="https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Flanfeare538.macombserver.net%2Fitwp1150%2FPROJ1-1%2Fproject1_part1.htm&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en/" target="_blank" rel="noopener">CSS Validator</a>
+    </p>
+  </footer>
+
+  <script type="text/babel">
+    
+    const headerStyle = { background: '#0b79d0', color: '#fff', padding: '12px', borderRadius: '6px' };
+    const cardStyle = { border: 'none', boxShadow: 'none' };
+    const footerStyle = { textAlign: 'center', color: '#333' };
+
+    class Header extends React.Component {
+
+      render() {
+        return (
+          <header className="header" style={headerStyle}>
+            <h1>{this.props.title}</h1>
+            <p>{this.props.subtitle}</p>
+          </header>
+        );
+      }
+
+    }
+
+    class ItemCard extends React.Component {
+      render(){
+        const { title, description, img, url } = this.props;
+
+        return (
+          <div className="card" style={cardStyle}>
+            <img src={img} alt={title} />
+            <div className="card-body">
+              <h3>{title}</h3>
+              <p>{description}</p>
+              <a href={url} target="_blank" rel="noopener" style={{ display: 'inline-block', padding: '6px 10px', background: '#0b79d0', color: '#fff', borderRadius: '4px', textDecoration: 'none' }}>Link to Webpage</a>
+            </div>
+          </div>
+        );
+      }
+    }
+
+    class App extends React.Component {
+      constructor(props){
+        super(props);
+        this.state = { items: [
+          { id:1, title: 'StackOverflow (React)', description: 'Newest React questions and community answers.', img: 'IMAGES/stackoverflow-912480907.png', url: 'https://stackoverflow.com/questions/tagged/reactjs?tab=Newest' },
+          { id:2, title: 'W3Schools React', description: 'Beginner-friendly React tutorials and examples.', img: 'IMAGES/w3schools-transparent-logo-free-png-574866907.png', url: 'https://www.w3schools.com/react/' },
+          { id:3, title: 'React.dev Learn', description: 'Official React documentation and learning resources.', img: 'IMAGES/Learn-React-Image-2-1950816900.jpg', url: 'https://react.dev/learn' }
+        ] };
+      }
+      render(){
+        return (
+          <div>
+            <Header title="My Favorite Resources" subtitle="Project 1 — Part 1" />
+            
+            
+            <div className="cards">
+              {this.state.items.map(item => (
+                <ItemCard key={item.id} {...item} />
+              ))}
+            </div>
+            
+          </div>
+        );
+      }
+    }
+
+    ReactDOM.render(<App />, document.getElementById('root'));
+  </script>
+</body>
+</html>

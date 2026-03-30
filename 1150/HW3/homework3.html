@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Styling React Components</title>
+  <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  <link rel="stylesheet" href="hw3_styles.css">
+</head>
+
+<body>
+  <main>
+    <h1>Color Hex Code Swatches</h1>
+    <h2>A Few Favorite Colors</h2>
+    <div id="container"></div>
+    <div id="info"></div>
+  </main>
+
+  <footer id="validation">
+    <a href="https://validator.w3.org/nu/?doc=https%3A%2F%2Flanfeare538.macombserver.net%2Fitwp1150%2FHW3%2Fhomework3.html">Validate HTML</a>
+    <a href="https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Flanfeare538.macombserver.net%2Fitwp1150%2FHW3%2Fhomework3.html&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en">Validate CSS</a>
+    <a href="../home.htm">Course Homepage</a>
+  </footer>
+
+  <script type="text/babel">
+    class Square extends React.Component {
+      render() {
+        var squareStyle = {
+          height: 200,
+          width: 150,
+          backgroundColor: this.props.color
+        };
+
+        return (
+          <div style={squareStyle}></div>
+        );
+      }
+    }
+
+    class Label extends React.Component {
+      render() {
+        return (
+          <p>{this.props.color}</p>
+        );
+      }
+    }
+
+    class Card extends React.Component {
+      render() {
+        var cardStyle = {
+          height: 200,
+          width: 150,
+          padding: 0,
+          backgroundColor: "#FFF",
+          boxShadow: "0px 0px 5px #666",
+          margin: 10
+        };
+
+        return (
+          <div style={cardStyle}>
+            <Square color={this.props.color} />
+            <Label color={this.props.color} />
+          </div>
+        );
+      }
+    }
+
+    ReactDOM.render(
+      <div className="cardrow">
+        <Card color="#FF5733" />
+        <Card color="#33FF57" />
+        <Card color="#3357FF" />
+      </div>,
+      document.querySelector("#container")
+    );
+
+    class Display extends React.Component {
+      render() {
+        return (
+          <Information {...this.props} />
+        );
+      }
+    }
+
+    class Information extends React.Component {
+      render() {
+        return (
+          <Message {...this.props} />
+        );
+      }
+    }
+
+    class Message extends React.Component {
+      render() {
+        return (
+          <div>
+            <h3>{this.props.featureName}</h3>
+            <p>{this.props.definition}</p>
+            <p>{this.props.popular}</p>
+          </div>
+        );
+      }
+    }
+
+    ReactDOM.render(
+      <Display
+        featureName="Color Hex Codes"
+        definition="A color hex code is a hexadecimal way to represent a color in RGB format by combining three values – the amounts of red, green and blue – in a particular shade of color."
+        popular="the most popular hex code color is #bada55."
+      />,
+      document.querySelector("#info")
+    );
+  </script>
+</body>
+
+</html>

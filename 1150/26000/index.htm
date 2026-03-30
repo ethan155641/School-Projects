@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Auto Parts Store | Affordable Auto Parts Online</title>
+  <meta name="description" content="Shop affordable and reliable auto parts online. Find brakes, engine parts, and more with fast shipping and great prices." />
+  <link rel="stylesheet" href="styles.css" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXXXX-X"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-XXXXXXX-X');
+  </script>
+</head>
+<body>
+  <header>
+    <div class="logo">AutoParts</div>
+    <nav>
+      <ul>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="shop.html">Shop Auto Parts</a></li>
+        <li><a href="catagories.html">Part Categories</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="FAQ.html">FAQs</a></li>
+      </ul>
+    </nav>
+    <div class="search-bar">
+      <input type="text" id="search" placeholder="Search auto parts..." >
+      <button onclick="searchParts()">Search</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Find Reliable Auto Parts Online</h1>
+      <p>Looking for quality car parts? Our online store offers reliable options for every make and model—at unbeatable prices.</p>
+      <a href="shop.html" class="cta-button">Shop Now</a>
+    </section>
+
+    <section class="featured">
+      <h2>Featured Part Categories</h2>
+      <p>Explore our top auto part categories, designed to help you get the job done right:</p>
+      <div class="category-grid">
+        <div class="category-card">Brakes</div>
+        <div class="category-card">Engine Components</div>
+        <div class="category-card">Suspension</div>
+        <div class="category-card">Electrical Systems</div>
+      </div>
+    </section>
+
+    <section class="about-us" style="padding: 20px;">
+      <h2>Welcome to AutoParts</h2>
+      <p>AutoParts is your go-to online destination for affordable and high-quality auto parts. Whether you're a DIYer or a mechanic, our platform helps you find exactly what you need.</p>
+      <p>We carry OEM and aftermarket components for a wide range of vehicles. From essential maintenance items to performance upgrades, we’ve got you covered.</p>
+    </section>
+
+    <section class="why-choose-us" style="padding: 20px;">
+      <h2>Why Choose AutoParts?</h2>
+      <ul>
+        <li>Affordable pricing on high-quality parts</li>
+        <li>Fast and reliable shipping</li>
+        <li>Dedicated customer support</li>
+        <li>Hassle-free returns and easy refunds</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <p>Contact us at: support@autoparts.com</p>
+      <div class="social-icons">
+        <a href="https://www.facebook.com/">Facebook</a>
+        <a href="https://x.com/">X</a>
+        <a href="https://www.instagram.com/">Instagram</a>
+        <a href="https://www.linkedin.com/">LinkedIn</a>
+      </div>
+      <p>&copy; 2025 AutoParts. All rights reserved. This Site Is For Educational Purpouses Only</p>
+    </div>
+  </footer>
+
+  <script>
+    function searchParts() {
+      const query = document.getElementById("search").value;
+      alert(`Searching for: ${query}`);
+    }
+  </script>
+</body>
+</html>

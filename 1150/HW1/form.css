@@ -1,0 +1,92 @@
+/*  Simple Form by Chris Coyer - https://bit.ly/3reyaC1 
+/*  This code has been modified from its original form.
+/*  You will notice the use of rem units in some cases this stands for "root em", pixel units are also used.
+    You will notice the use of vw, that stands for "viewport width".
+*/
+
+/*  styles and resizes the heading to make it responsive */
+h1 {
+    text-align: center;
+    margin: 10px;
+    font-size: 5vw;
+}
+
+/*  styles and resizes paragraph to make it responsive */
+p {
+    font-size: 2vw;
+    text-align: center;
+    margin: 10px;
+}
+
+/* styles the output result area */
+.output {
+    background-color: #c6d9ec;
+    width: 300px;
+    height: 50px;
+    border-radius: 5px;
+    padding: 8px 0 5px 0;
+    margin: auto;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bolder;
+}
+
+/* CSS from the original form */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+body {
+    background-color: #eee;
+    font-family: 'helvetica neue', helvetica, arial, sans-serif;
+    color: #222;
+  }
+  
+#form {
+    max-width: 700px;
+    padding: 2rem;
+    box-sizing: border-box;
+    margin: 0 auto;
+  }
+  
+.form-field {
+    display: flex;
+    margin: 0 0 1rem 0;
+  }
+
+/* width value has been modified from its original state */
+label, input {
+    width: 30%;
+    padding: 0.5rem;
+    box-sizing: border-box;
+    justify-content: space-between;
+    font-size: 1.1rem;
+  }
+label {
+    text-align: right;
+    width: 30%;
+  }
+input {
+    border: 2px solid #aaa;
+    border-radius: 2px;
+  }
+
+/* formatting for the form buttons */
+input[type=button] {
+    border: 2px solid #aaa;
+    border-radius: 2px;
+    background-color: #336699;
+    color: #eee;
+  }
+
+ /* ID that centers the validation text */
+ #validation {
+    text-align: center;
+ }
+
+ /* add a margin around the entire footer */
+ footer {
+    margin: 50px;
+ }

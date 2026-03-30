@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Homework 2 - Working with React Components</title>
+  <link rel="stylesheet" href="homework2.css">
+</head>
+<body>
+  <main>
+    <h1>Working with React Components</h1>
+
+    <div id="container"></div>
+    <div id="buttonContainer"></div>
+
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+      class HelloWorld extends React.Component {
+        render() {
+          return (
+            <p>
+              Hello, <strong>{this.props.greetTarget}</strong>!
+            </p>
+          );
+        }
+      }
+
+      class Buttonify extends React.Component {
+        render() {
+          return (
+            <div>
+              <button>{this.props.children}</button>
+            </div>
+          );
+        }
+      }
+
+      ReactDOM.render(
+        <div>
+          <HelloWorld greetTarget="Michael Jordan" />
+          <HelloWorld greetTarget="LeBron James" />
+          <HelloWorld greetTarget="Kobe Bryant" />
+          <HelloWorld greetTarget="Stephen Curry" />
+          <HelloWorld greetTarget="Kevin Durant" />
+        </div>,
+        document.querySelector("#container")
+      );
+
+      ReactDOM.render(
+        <Buttonify>Show the Lineup</Buttonify>,
+        document.querySelector("#buttonContainer")
+      );
+    </script>
+  </main>
+
+  <footer>
+    <p id="validationLinks">
+      <a href="https://validator.w3.org/nu/?doc=https%3A%2F%2Flanfeare538.macombserver.net%2Fitwp1150%2FHW2%2Fhomework2.html">HTML5 Validation</a> |
+      <a href="https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Flanfeare538.macombserver.net%2Fitwp1150%2FHW2%2Fhomework2.html&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en">CSS Validation</a> |
+      <a href="https://lanfeare538.macombserver.net/itwp1150/home.htm">Course Homepage</a>
+    </p>
+  </footer>
+</body>
+</html>

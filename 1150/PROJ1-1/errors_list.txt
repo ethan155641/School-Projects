@@ -1,0 +1,11 @@
+1) Used `class` attribute in JSX instead of `className` (Header element).
+2) Mismatched/unclosed root `div` tags causing unbalanced JSX/HTML.
+3) HTML comment (`<!-- -->`) placed inside JSX (invalid in JSX).
+4) `<img>` tag not self-closed in JSX (should be `<img ... />`).
+5) Used `onclick` (lowercase) instead of `onClick` on a JSX element.
+6) Used wrong variable names in map: `itm` vs `item` causing ReferenceError when spreading.
+7) Misspelled `setState` as `setstate` (method does not exist).
+8) Used `ReactDom` (capitalization error) instead of `ReactDOM`.
+9) Script type set to `text/javascript` for JSX code — should be `text/babel` when using Babel standalone.
+10) Incorrect usage of spread / undefined variable when passing props: `{...item}` where `item` is not defined in that scope.
+

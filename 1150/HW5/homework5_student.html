@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<meta charset="UTF-8" >
+		<title>Accessing DOM Elements - React</title>
+		<link rel="stylesheet" href="styles.css">
+		<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+		<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+		<script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+			<main>
+						<h1>Instant Message Display</h1>
+
+						<div id="description_info">
+							<h2>The basic application below makes use of the following React topics:</h2>
+								<ol>
+										<li>SyntheticEvent</li>
+										<li>Component Lifecycle</li>
+										<li>State</li>
+										<li>The <b>this</b> Keyword</li>
+										<li>Refs</li>
+										<li>Event Handler</li>
+								</ol>
+						</div>
+
+						<div id="container"></div>
+
+	<script type="text/babel">
+
+class App extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = { data: 'Enter a message...' };
+		this.updateState = this.updateState.bind(this);
+		this.clearInput = this.clearInput.bind(this);
+	}S
+
+	componentDidMount() {
+		this.refs.field_name.focus();
+	}
+
+	updateState(e) {
+		this.setState({ data: e.target.value });
+	}
+
+	clearInput() {
+		this.setState({ data: '' });
+		this.refs.field_name.focus();
+	}
+
+	render() {
+		return (
+			<div>
+				<input value={this.state.data} onChange={this.updateState} onFocus={e => e.currentTarget.select()} ref="field_name" />
+				<button onClick={this.clearInput}>CLEAR</button>
+				<h4>{this.state.data}</h4>
+			</div>
+		);
+	}
+}
+
+ReactDOM.render(
+	<App />,
+	document.getElementById('container')
+);
+
+	</script>
+
+	</main>
+
+		<footer>
+					<!-- Links to W3C HTML5 & CSS Validation and your Course Homepage --> 
+							<p id="validation">  
+									<a href="https://validator.w3.org/nu/?doc=https%3A%2F%2Flanfeare538.macombserver.net%2Fitwp1150%2FHW5%2Fhomework5_student.html" title="HTML5 Validation - W3C">HTML5 Validation</a> | 
+									<a href="https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Flanfeare538.macombserver.net%2Fitwp1150%2FHW5%2Fhomework5_student.html&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en" title="CSS Validation - W3C">CSS Validation</a> | 
+									<a href="../home.htm" title="Course Homepage">Course Homepage</a>
+							</p> 
+		</footer>
+  
+</body>
+</html>

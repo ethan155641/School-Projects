@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Project 1 - Part 1 (Errors)</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div id="root">
+
+  <script type="text/javascript">
+    const headerStyle = { background: '#0b79d0', color: '#fff', padding: '12px', borderRadius: '6px' };
+    const cardStyle = { border: 'none', boxShadow: 'none' };
+    const footerStyle = { textAlign: 'center', color: '#333' };
+
+    class Header extends React.Component {
+      render() {
+        return (
+          <header class="header" style={headerStyle}>
+            <h1>{this.props.title}</h1>
+            <p>{this.props.subtitle}</p>
+          </header>
+        );
+      }
+    }
+
+    class ItemCard extends React.Component {
+      render(){
+        const { title, description, img, url } = this.props;
+        return (
+          <div class="card" style={cardStyle}>
+            <img src={img} alt={title}>
+            <div className="card-body">
+              <h3>{title}</h3>
+              <p>{description}</p>
+              <a href={url} onclick={this.handleClick} style={{ display: 'inline-block', padding: '6px 10px', background: '#0b79d0', color: '#fff', borderRadius: '4px', textDecoration: 'none' }}>Select</a>
+            </div>
+          </div>
+        );
+      }
+    }
+
+    class App extends React.Component {
+      constructor(props){
+        super(props);
+        this.state = { items: [
+          { id:1, title: 'StackOverflow (React)', description: 'Newest React questions and community answers.', img: 'IMAGES/stackoverflow-912480907.png', url: 'https://stackoverflow.com/questions/tagged/reactjs?tab=Newest' },
+          { id:2, title: 'W3Schools React', description: 'Beginner-friendly React tutorials and examples.', img: 'IMAGES/w3schools-transparent-logo-free-png-574866907.png', url: 'https://www.w3schools.com/react/' },
+          { id:3, title: 'React.dev Learn', description: 'Official React documentation and learning resources.', img: 'IMAGES/Learn-React-Image-2-1950816900.jpg', url: 'https://react.dev/learn' }
+        ] };
+      }
+      addItem(){
+        const next = { id: Date.now(), title: 'New Item', description: 'Dynamically added item', img: 'https://via.placeholder.com/300x180?text=New' };
+        this.setstate(prev => ({ items: [...prev.items, next] }));
+      }
+      render(){
+        return (
+          <div>
+            <Header title="My Favorite Resources" subtitle="Project 1 — Part 1" />
+            <div className="cards">
+              {this.state.items.map(itm => (
+                <ItemCard key={item.id} {...item} />
+              ))}
+            </div>
+          </div>
+        );
+      }
+    }
+
+    ReactDom.render(<App />, document.getElementById('root'));
+  </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Project 1 - Part 1 (Errors)</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+  <!-- ERROR: wrong script for JSX (should be text/babel) -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div id="root">
+  </div> <!-- ERROR: root div closed too late / mismatched -->
+
+  <script>
+    // ERROR 1: using 'class' instead of 'className' in JSX below
+    const headerStyleWrong = { background: '#0b79d0' };
+
+    class Header extends React.Component {
+      render() {
+        return (
+          <header class="header" style={headerStyleWrong}>
+            <h1>{this.props.title}</h1>
+            <p>{this.props.subtitle}</p>
+          </header>
+        );
+      }
+    }
+
+    class ItemCard extends React.Component {
+      constructor(props){
+        super(props);
+      }
+      // ERROR 2: using onclick (lowercase) instead of onClick
+      render(){
+        const { title, description, img } = this.props;
+        return (
+          <div className="card">
+            <!-- ERROR 3: HTML comment inside JSX -->
+            <img src={img} alt={title}> <!-- ERROR 4: missing self-closing slash -->
+            <div className="card-body">
+              <h3>{title}</h3>
+              <p>{description}</p>
+              <button onclick={this.handleClick}>Select</button>
+            </div>
+          </div>
+        );
+      }
+    }
+
+    class App extends React.Component {
+      constructor(props){
+        super(props);
+        this.state = { items: [
+          { id:1, title: 'Sample One', description: 'A short description.', img: 'https://via.placeholder.com/300x180?text=One' },
+          { id:2, title: 'Sample Two', description: 'Another short description.', img: 'https://via.placeholder.com/300x180?text=Two' }
+        ] };
+      }
+      addItem(){
+        // ERROR 5: incorrect method name setstate instead of setState
+        const next = { id: Date.now(), title: 'New Item', description: 'Dynamically added item', img: 'https://via.placeholder.com/300x180?text=New' };
+        this.setstate(prev => ({ items: [...prev.items, next] }));
+      }
+      render(){
+        return (
+          <div>
+            <Header title="React Demo" subtitle="Errors file" />
+            <div className="cards">
+              {this.state.items.map(itm => (
+                // ERROR 6: using wrong variable name 'itm' later as 'item' when spreading
+                <ItemCard key={item.id} {...item} />
+              ))}
+            </div>
+          </div>
+        );
+      }
+    }
+
+    // ERROR 7: misspelled ReactDOM as ReactDom
+    ReactDom.render(<App />, document.getElementById('root'));
+  </script>
+</body>
+</html>
