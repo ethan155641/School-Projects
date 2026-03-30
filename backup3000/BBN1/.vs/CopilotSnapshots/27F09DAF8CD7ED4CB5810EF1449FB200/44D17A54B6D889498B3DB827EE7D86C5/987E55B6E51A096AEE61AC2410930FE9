@@ -1,0 +1,194 @@
+﻿using System;
+using System.Web;
+using System.Web.UI.WebControls;
+using System.IO;
+//using System.Drawing; // Commented as per instructions
+
+public partial class Admin : System.Web.UI.Page
+{
+    // Global variable for upload path
+    string uploadPath;
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        try
+        {
+            var data = File.ReadAllText(Server.MapPath("~/App_Data/ownerID.txt"));
+            txtOwnerID.Text = data.ToString().Trim();
+        }
+        catch
+        {
+            Response.Redirect("Login.aspx");
+        }
+        FileUpload1.AllowMultiple = true;
+        uploadPath = Server.MapPath("~/Img/");
+        checkTables(txtOwnerID.Text + "BOOKS", "CREATE TABLE " + txtOwnerID.Text + "BOOKS (Title CHAR(64), ISBN CHAR(14) UNIQUE, Author CHAR(64), Category CHAR(48), Image CHAR(128), Description CHAR(255))");
+        initLstProgress();
+    }
+
+    private void initLstProgress()
+    {
+        lstProgress.Items.Clear();
+        lstProgress.Items.Add("General Instructions:");
+        lstProgress.Items.Add("To view the current Inventory,");
+        lstProgress.Items.Add("click [View Inventory]");
+        lstProgress.Items.Add("");
+        lstProgress.Items.Add("To upload images:");
+        lstProgress.Items.Add("Click [Browse]");
+        lstProgress.Items.Add("Locate and select the images");
+        lstProgress.Items.Add("for uploading.");
+        lstProgress.Items.Add("Click [Open]");
+        lstProgress.Items.Add("Click [Load Images]");
+        lstProgress.Items.Add("");
+        lstProgress.Items.Add("To upload images:");
+        lstProgress.Items.Add("Click [Browse]");
+        lstProgress.Items.Add("Locate and select the XML ");
+        lstProgress.Items.Add("file for uploading.");
+        lstProgress.Items.Add("Click [Open]");
+        lstProgress.Items.Add("Click [Import Book Data]");
+        lstProgress.Items.Add("");
+    }
+
+    private void checkTables(string Table, string sqlStatement)
+    {
+        lblErrorMessage.Text = "";
+        // myDatabaseConnection.executeSQL("SELECT * FROM " + Table, ref gvDisplay, ref lblErrorMessage);
+        gvDisplay.Visible = false;
+        if (lblErrorMessage.Text.Length > 0)
+        {
+            lblErrorMessage.Text = "";
+            // myDatabaseConnection.executeSQL(sqlStatement, ref gvDisplay, ref lblErrorMessage);
+        }
+    }
+
+    protected void btnResetUser_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("Login.aspx");
+    }
+
+    protected void btnClearDatabase_Click(object sender, EventArgs e)
+    {
+        string sqlCommand = "Drop Table " + txtOwnerID.Text + "BOOKS";
+        // myDatabaseConnection.executeSQL(sqlCommand, ref gvDisplay, ref lblErrorMessage);
+    }
+
+    protected void btnLoadImages_Click(object sender, EventArgs e)
+    {
+        lstHidden.Items.Clear();
+        if (!FileUpload1.HasFiles)
+        {
+            lstProgress.Items.Add("Browse for files and select");
+            lstProgress.Items.Add("all images from the directory.");
+            FileUpload1.Focus();
+        }
+        else
+        {
+            lstProgress.Items.Add("Process JPG Files.");
+            foreach (HttpPostedFile uploadedFile in FileUpload1.PostedFiles)
+            {
+                string fileName = Path.GetFileName(uploadedFile.FileName);
+                uploadedFile.SaveAs(Server.MapPath("~/Img/") + fileName);
+                lstHidden.Items.Add(String.Format("{0}", fileName));
+            }
+        }
+    }
+
+    protected void btnLoadXML_Click(object sender, EventArgs e)
+    {
+        lstHidden.Items.Clear();
+        lblErrorMessage.Text = null;
+        if (!FileUpload2.HasFile)
+        {
+            lstProgress.Items.Add("[Browse] for the XML file");
+            lstProgress.Items.Add("and select.");
+            FileUpload2.Focus();
+        }
+        else
+        {
+            lstProgress.Items.Add("Process XML Files.");
+            String fileName = uploadPath + FileUpload2.FileName;
+            lstProgress.Items.Add(fileName);
+            FileUpload2.SaveAs(fileName);
+            try
+            {
+                if (File.Exists(fileName))
+                    using (StreamReader sr = new StreamReader(fileName))
+                    {
+                        while (sr.Peek() >= 0)
+                        {
+                            lstHidden.Items.Add(sr.ReadLine());
+                        }
+                    }
+            }
+            catch (Exception f)
+            {
+                Console.WriteLine("The process failed: {0}", f.ToString());
+            }
+            decode(lstHidden);
+        }
+    }
+
+    private void decode(ListBox lstHidden)
+    {
+        string field;
+        lstHidden.Items.RemoveAt(0);
+        lstHidden.Items.RemoveAt(0);
+        while (lstHidden.Items.Count > 1)
+        {
+            string sqlStatement = "INSERT INTO " + txtOwnerID.Text + "BOOKS (Title, ISBN, Author, Category, Image, Description) VALUES (";
+            lstHidden.Items.RemoveAt(0);
+            for (int i = 0; i < 6; i++)
+            {
+                field = lstHidden.Items[0].ToString();
+                field = stripTags(field);
+                if (i == 4)
+                {
+                    sqlStatement += "'" + "\\Img\\" + field + "'";
+                }
+                else
+                {
+                    if (i == 5)
+                    {
+                        if (field.Length >= 255)
+                        {
+                            field = field.Substring(0, 254);
+                        }
+                    }
+                    field = field.Replace("'", "''");
+                    sqlStatement += " '" + field + "'";
+                }
+                if (i < 5)
+                {
+                    sqlStatement += ", ";
+                }
+                lstHidden.Items.RemoveAt(0);
+            }
+            sqlStatement += (")");
+            // Response.Write(sqlStatement + "<hr>");
+            // myDatabaseConnection.executeSQL(sqlStatement, ref gvDisplay, ref lblErrorMessage);
+            lstHidden.Items.RemoveAt(0);
+        }
+    }
+
+    private string stripTags(string field)
+    {
+        int x = field.IndexOf(">");
+        field = field.Substring(x + 1);
+        x = field.LastIndexOf("<");
+        field = field.Substring(0, x);
+        return (field);
+    }
+
+    protected string FormatImageUrl(string url)
+    {
+        if (url != null && url.Length > 0)
+            return ("~/" + url);
+        else return null;
+    }
+
+    protected void btnViewInventory_Click(object sender, EventArgs e)
+    {
+        string sqlCommand = "SELECT Title, ISBN, Author, Category, Image, Description FROM " + txtOwnerID.Text + "BOOKS";
+        // myDatabaseConnection.executeSQL(sqlCommand, ref gvDisplay, ref lblErrorMessage);
+    }
+}

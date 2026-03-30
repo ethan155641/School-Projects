@@ -1,0 +1,36 @@
+﻿using System;
+using System.Data;
+using System.Data.SqlClient;
+using System.Web.UI.WebControls;
+using System.Configuration;
+
+public class myDatabaseConnection
+{
+    private static string GetConnectionString()
+    {
+        // Update this connection string as needed for your environment
+        return ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+    }
+
+    public static void executeSQL(string sqlCommand, ref GridView gvDisplay, ref Label lblErrorMessage)
+    {
+        try
+        {
+            using (SqlConnection conn = new SqlConnection(GetConnectionString()))
+            {
+                SqlDataAdapter da = new SqlDataAdapter(sqlCommand, conn);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                gvDisplay.DataSource = dt;
+                gvDisplay.DataBind();
+                gvDisplay.Visible = true;
+                lblErrorMessage.Text = "";
+            }
+        }
+        catch (Exception ex)
+        {
+            lblErrorMessage.Text = ex.Message;
+            gvDisplay.Visible = false;
+        }
+    }
+}

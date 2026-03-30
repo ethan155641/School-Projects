@@ -1,0 +1,61 @@
+using System;
+using System.Globalization;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class LogIn : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        // Only handle initial setup here
+    }
+
+    protected void btnSubmit_Click(object sender, EventArgs e)
+    {
+        // Validation logic moved here
+        bool errorFlag = false;
+        if ((txtDOB1.Text).Trim() != (txtDOB2.Text).Trim())
+        {
+            txtDOB1.Text = "";
+            txtDOB2.Text = "";
+            txtDOB1.Focus();
+            errorFlag = true;
+        }
+        if ((txtEMail1.Text).Trim() != (txtEMail2.Text).Trim())
+        {
+            txtEMail1.Text = "";
+            txtEMail2.Text = "";
+            txtEMail1.Focus();
+            errorFlag = true;
+        }
+        string[] partsOfAddress = (txtEMail1.Text).Split('@');
+        if ((partsOfAddress.Length != 2) || (!partsOfAddress[1].Contains(".")))
+        {
+            txtEMail1.Text = "";
+            txtEMail2.Text = "";
+            txtEMail1.Focus();
+            errorFlag = true;
+        }
+        try
+        {
+            DateTime checkDate = DateTime.ParseExact(txtDOB1.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+        }
+        catch
+        {
+            txtDOB1.Text = "";
+            txtDOB2.Text = "";
+            txtDOB1.Focus();
+            errorFlag = true;
+        }
+        if (!errorFlag)
+        {
+            HttpCookie cookie = new HttpCookie("userInfo");
+            cookie.Values.Add("eMail", txtEMail1.Text);
+            cookie.Values.Add("DOB", txtDOB1.Text);
+            cookie.Expires = DateTime.Now.AddDays(30);
+            Response.Cookies.Add(cookie);
+            Response.Redirect("Default.aspx");
+        }
+    }
+}

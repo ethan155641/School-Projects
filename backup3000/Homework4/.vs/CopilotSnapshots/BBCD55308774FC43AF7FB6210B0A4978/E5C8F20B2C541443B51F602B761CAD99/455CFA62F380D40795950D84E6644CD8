@@ -1,0 +1,80 @@
+﻿using System;
+using System.Globalization;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class LogIn : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (IsPostBack)
+        {
+            // Commented out Response.Write for clean output
+            // Response.Write(this.txtEMail1.Text + "<br />");
+            // Response.Write(this.txtEMail2.Text + "<br />");
+            // Response.Write(this.txtDOB1.Text + "<br />");
+            // Response.Write(this.txtDOB2.Text + "<br />");
+            // Response.Write(this.btnSubmit.Text + "<br />");
+            // Response.Write("Enter Validation Code Here <br />");
+            //--------------------------------------------------------------------
+            //Business Rule 1: Do not assume the initial email or DOB is correct.
+            // If they do not match, clear both email1 and email2 or DOB1 and DOB2
+            // as appropriate.
+            //We have to do DOB first or we would not be able to set focus
+            //properly if both DOB and email were in error
+            //--------------------------------------------------------------------
+            bool errorFlag = false;
+            if ((txtDOB1.Text).Trim() != (txtDOB2.Text).Trim())
+            {
+                txtDOB1.Text = "";
+                txtDOB2.Text = "";
+                txtDOB1.Focus();
+                errorFlag = true;
+            }
+            if ((txtEMail1.Text).Trim() != (txtEMail2.Text).Trim())
+            {
+                txtEMail1.Text = "";
+                txtEMail2.Text = "";
+                txtEMail1.Focus();
+                errorFlag = true;
+            }
+            //--------------------------------------------------------------------
+            //Business Rule 2: Validate that the email address contains an @ symbol
+            // and that there is at least one 1 period after the @.
+            //--------------------------------------------------------------------
+            string[] partsOfAddress = (txtEMail1.Text).Split('@');
+            if ((partsOfAddress.Length != 2) || (!partsOfAddress[1].Contains(".")))
+            {
+                txtEMail1.Text = "";
+                txtEMail2.Text = "";
+                txtEMail1.Focus();
+                errorFlag = true;
+            }
+            //--------------------------------------------------------------------
+            //Business Rule 3: Make sure date field is represented as MM/DD/YYYY.
+            //--------------------------------------------------------------------
+            try
+            {
+                DateTime checkDate = DateTime.ParseExact(txtDOB1.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+            }
+            catch
+            {
+                txtDOB1.Text = "";
+                txtDOB2.Text = "";
+                txtDOB1.Focus();
+                errorFlag = true;
+            }
+            //check that all the business rules are valid:
+            if (!errorFlag)
+            {
+                HttpCookie cookie = new HttpCookie("userInfo");
+                cookie.Values.Add("eMail", txtEMail1.Text);
+                cookie.Values.Add("DOB", txtDOB1.Text);
+                cookie.Expires = DateTime.Now.AddDays(30);
+                Response.Cookies.Add(cookie);
+                Response.Redirect("Default.aspx");
+            }
+        }
+    }
+}
