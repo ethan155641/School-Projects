@@ -1,0 +1,72 @@
+/* Author: Ethan Lanfear 
+   Course: ITWP1050
+   Assignment: Homework 5
+*/
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    text-align: center;
+    padding: 1rem;
+    background-color: #219e51;
+    color: white;
+}
+
+main {
+    padding: 1rem;
+}
+
+section {
+    margin-bottom: 1.5rem;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #219e51;
+    color: white;
+}
+
+/* Media Queries */
+@media (max-width: 800px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    body {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 600px) {
+    body {
+        background-color: #e6f7ff;
+    }
+}
+
+/* Responsive Section */
+#responsive-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+#responsive-section div {
+    background-color: #219e51;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}

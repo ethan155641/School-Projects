@@ -1,0 +1,86 @@
+/* 
+  Filename: style.css
+  Author: Ethan Lanfear
+  Course: ITWP 1050
+  Assignment: Project 1
+*/
+
+/* Global Variable using :root Selector */
+:root {
+    --white: #FFFFFF;
+  }
+  
+  /* Universal Selector */
+  * {
+    box-sizing: border-box;
+  }
+  
+  /*Body Selector */
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  /*  Header Class */
+  .header {
+    background-color: var(--white);
+    border-radius: 10px;
+    box-shadow: inset 0 0 25px black;
+  }
+  
+  /*  h1 Selector */
+  h1 {
+    color: var(--white);
+    padding: 15px;
+  }
+  
+  /* h2 Selector */
+  h2 {
+    text-align: center;
+    padding: 0;
+  }
+  
+  /* Image  */
+  img {
+    border: 3px double black;
+    border-radius: 10px;
+    padding: 5px;
+    width: 100%;
+    height: auto;
+  }
+  
+  /* Awards and Info */
+  #awards, #info {
+    text-align: left;
+    font-size: 85%;
+  }
+  
+  /* Retired ID  */
+  #retired {
+    color: maroon;
+    font-weight: bold;
+  }
+  
+  /* Highlights Class */
+  .highlights {
+    text-align: left;
+    font-size: 85%;
+  }
+  
+  /* Headlines Class */
+  .headlines {
+    font-size: 85%;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  /* Column Side Class */
+  .column.side {
+    background-color: var(--white);
+  }
+  
+  /* Footer Validation */
+  .footer {
+  padding: 20px;
+  text-align: center;
+  font-size: 11px;
+  }

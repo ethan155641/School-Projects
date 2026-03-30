@@ -1,0 +1,159 @@
+/* 
+Filename: styles.css
+Author: Ethan Lanfear
+Course: ITWP 1050
+Assignment: Project 2 - 
+*/
+
+/* Global Variable */
+:root {
+    --blackColor: #000000;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgba(102,204,255,.4);
+}
+
+p {
+    text-indent: 1em;
+    line-height: 1.5em;
+    font-size: 1.5vw;
+}
+
+@font-face {
+    font-family: 'Title Font';
+    src: url('webfonts/AmaticSC-Bold.ttf') format('truetype');
+    font-style: normal;
+}
+/* These are the heading styles */
+h1 {
+    font-family:  Arial, Helvetica, sans-serif;
+    font-size: 7vw;
+    text-shadow: 1px 1px 4px #336699;
+}
+
+h2 {
+    background: url('images/coloradomountains_bkgd.jpg') center repeat;
+    color: #fff;
+    text-shadow: 1px 1px 5px var(--blackColor);
+    padding: 25px;
+    border: 2px inset var(--blackColor);
+    font-variant: small-caps;
+    box-shadow: inset 5px 10px 20px #336699;
+    font-size: 3vw;
+}
+
+h3 {
+    font-variant: normal;
+    padding: 5px;
+    font-size: 2vw;
+    border-bottom: 2px solid var(--blackColor);
+}
+
+h4 {
+    font-variant: normal;
+    padding: 5px;
+    font-size: 1.75vw;
+}
+
+h5 {
+    font-style: italic;
+    color: DarkSlateGray;
+    font-size: 1vw;
+}
+
+img {
+    float: right;
+    margin: 0 15px 15px 0;
+    border: 1px solid var(--blackColor);
+}
+
+.stateflag {
+    float: left;
+    border: 1px inset #fff;
+    margin: 5px 15px 10px 0;
+    box-shadow: 0px 3px 3px 1px var(--blackColor);
+}
+
+.highlightSection {
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 1px 1px 2px 1px SteelBlue;
+}
+
+.copyright {
+    font-size: 9px;
+    font-style: italic;
+    text-align: center;
+    padding: 10px;
+}
+
+#validation {
+    text-align: center;
+    font-size: 11px;
+}
+
+ul li {
+    line-height: 1.5em;
+    font-size: 1.5vw;
+}
+
+a {
+    text-decoration: underline;
+    color: var(--blackColor);
+}
+
+a:link {
+    text-decoration: underline;
+    color: var(--blackColor);
+    font-weight: bold;
+}
+
+a:visited {
+    text-decoration: underline;
+    color: darkBlue;
+}
+
+a:hover {
+    text-decoration: none;
+    color: DarkRed;
+    font-weight: bold;
+}
+
+a:active {
+    text-decoration: underline wavy DarkRed;
+    font-weight: bold;
+}
+
+
+/* Applies a 15-degree rotation */
+.rotate {
+    transform: rotate(15deg);
+}
+
+/* Scales elements*/
+.scale {
+    transform: scale(1.2);
+}
+
+/* Skews elements*/
+.skew {
+    transform: skewX(10deg);
+}
+
+/* Applies multiple transforms to elements*/
+.transforms {
+    transform: rotate(10deg) scale(1.1);
+}
+
+/*background color and font size transition */
+.transition {
+    background-color: lightblue;
+    transition: background-color 0.5s ease, font-size 0.3s ease;
+}
+
+.transition:hover {
+    background-color: darkblue;
+    font-size: 1.6vw;
+}

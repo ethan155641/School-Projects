@@ -1,0 +1,37 @@
+/* 
+Ethan Lanfear
+ITWP 1050 
+Homework 2 
+Description: This CSS file styles the HTML elements for the homework2.html file.
+*/
+
+/* Universal selector Set a default font color */
+* {
+    color: teal;
+}
+
+/* Body Styling basic layout and font properties*/
+body {
+    margin: 25px; 
+    font-family: Arial, Helvetica, sans-serif; 
+    font-size: 1em; 
+    text-align: center;
+}
+
+/* Footer Styling adjusts spacing around the footer*/
+footer {
+    margin-top: 50px;
+    margin-bottom: 50px; 
+}
+
+/* Image Styling: borders and rounded edges for images */
+img {
+    border: 1px solid black; 
+    border-radius: 10px; 
+}
+
+/* Pseudo-Element adds (external) after links to external sites */
+.external-link::after {
+    content: " (external)"; 
+    color: darkblue; 
+}

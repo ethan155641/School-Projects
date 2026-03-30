@@ -1,0 +1,107 @@
+/* styles.css - Ethan Lanfear - ITWP 1050 Project 3 */
+
+/* Global Variables */
+:root {
+    --pageColor: #333;
+}
+
+/* General Styles */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 3rem;
+    padding: 0;
+    box-sizing: border-box;
+    background: url('images/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: var(--pageColor);
+}
+
+h1 {
+    font-family: 'headlineFont', Arial, sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    text-align: center;
+}
+
+footer {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.75rem;
+    text-align: center;
+    margin: 50px 0;
+}
+
+/* Hyperlink Pseudo-Classes */
+a {
+    text-decoration: underline;
+    color: var(--pageColor);
+}
+
+a:link {
+    font-weight: bold;
+}
+
+a:visited {
+    color: #555;
+}
+
+a:hover {
+    text-decoration: none;
+    font-weight: bold;
+    color: #888;
+}
+
+a:active {
+    text-decoration: underline wavy #f00;
+    font-weight: bold;
+}
+
+/* Responsive Text */
+.responsive-text {
+    font-size: 3rem;
+    line-height: 1.5;
+    color: #053da5;
+}
+
+p.responsive-text {
+    font-size: 1rem;
+    line-height: 1.5;
+    text-align: justify;
+    color: #053da5;
+}
+
+.image-text {
+    font-size: 1rem;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Media Query for Responsiveness */
+@media (max-width: 600px) {
+    .responsive-text {
+        font-size: 1.5rem;
+    }
+}
+
+/* Grid Layout */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    margin: 10px;
+}
+
+.gallery img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 2px 4px 8px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.04s ease-in-out;
+}
+
+.gallery img:hover {
+    transform: scale(1.3);
+}
